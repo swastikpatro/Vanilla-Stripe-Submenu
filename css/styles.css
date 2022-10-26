@@ -659,7 +659,7 @@ body {
 
 .sidebar {
   width: 90vw;
-  height: 95vh;
+  height: 90vh;
   max-width: var(--fixedWidth);
   background: var(--white);
   border-radius: var(--borderRadius);

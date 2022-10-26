@@ -4,6 +4,7 @@ const toggleBtn = document.querySelector('.toggle-btn');
 const closeBtn = document.querySelector('.close-btn');
 const sidebarWrapper = document.querySelector('.sidebar-wrapper');
 const sidebar = document.querySelector('.sidebar-links');
+const sidebarAside = document.querySelector('.sidebar');
 const linkBtns = [...document.querySelectorAll('.link-btn')];
 const submenu = document.querySelector('.submenu');
 const hero = document.querySelector('.hero');
@@ -21,8 +22,8 @@ function returnSublinks(listLinks = []) {
   return listLinks
     .map(({ label, icon, url }) => {
       return `
-      <a href="${url}">
-        <i class="${icon}"></i>
+    <a href="${url}">
+    <i class="${icon}"></i>
         ${label}
       </a>`;
     })
@@ -33,13 +34,13 @@ sidebar.innerHTML = sublinks
   .map((item) => {
     const { links, page } = item;
     return `
-  <article>
+    <article>
     <h4>${page}</h4>
     <div class="sidebar-sublinks">
     ${returnSublinks(links)}
     </div>
-  </article>
-  `;
+    </article>
+    `;
   })
   .join('');
 
@@ -65,12 +66,12 @@ function handleMouseHover(e) {
     const columns = `col${links.length >= 4 ? 4 : links.length}`;
     submenu.innerHTML = `
     <section>
-      <h4>${page}</h4>
-      <div class="submenu-center ${columns}">
-      ${returnSublinks(links)}
-      </div>
+    <h4>${page}</h4>
+    <div class="submenu-center ${columns}">
+    ${returnSublinks(links)}
+    </div>
     </section>
-      `;
+    `;
   }
 }
 
@@ -86,5 +87,11 @@ nav.addEventListener('mouseover', (e) => {
     return;
   } else {
     submenu.classList.remove('show');
+  }
+});
+
+sidebarWrapper.addEventListener('click', (e) => {
+  if (!e.target.closest('.sidebar')) {
+    sidebarWrapper.classList.remove('show');
   }
 });
